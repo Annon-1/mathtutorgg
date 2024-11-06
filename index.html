@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Play SWF Games with Ruffle</title>
-  <script src="ruffle.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My SWF Game Portal</title>
+    <script src="ruffle.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h1 { margin: 20px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding: 20px; }
+        .grid-item { cursor: pointer; padding: 10px; background-color: #f1f1f1; border-radius: 8px; }
+        .grid-item img { width: 100%; border-radius: 5px; }
+        .game-container { display: none; padding: 20px; }
+        #backButton { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
 </head>
 <body>
-  <h1>My SWF Gamez</h1>
+    <h1>My SWF Game Portal</h1>
 
-  <div>
-    <p>Bloons TD 5</p>
-    <object width="800" height="600" data="btd5.swf"></object>
-  </div>
+    <!-- Game Selection Grid -->
+    <div class="grid-container">
+        <div class="grid-item" onclick="loadGame('btd4.swf')">
+            <img src="btd4.jpg" alt="Bloons TD 4">
+            <p>Bloons TD 4</p>
+        </div>
+        <div class="grid-item" onclick="loadGame('btd5.swf')">
+            <img src="btd5.jpg" alt="Bloons TD 5">
+            <p>Bloons TD 5</p>
+        </div>
+        <!-- Add more games by copying the grid-item div structure -->
+    </div>
 
+    <!-- Game Display Area -->
+    <div class="game-container" id="gameContainer">
+        <object id="gameObject" width="800" height="600"></object>
+        <button id="backButton" onclick="showGrid()">Back to Game Selection</button>
+    </div>
+
+    <script>
+        // Function to load a game
+        function loadGame(gameFile) {
+            document.querySelector('.grid-container').style.display = 'none';
+            document.getElementById('gameContainer').style.display = 'block';
+            document.getElementById('gameObject').data = gameFile;
+        }
+
+        // Function to show game selection grid
+        function showGrid() {
+            document.getElementById('gameContainer').style.display = 'none';
+            document.querySelector('.grid-container').style.display = 'grid';
+        }
+    </script>
 </body>
 </html>
